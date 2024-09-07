@@ -54,15 +54,16 @@ export default function App() {
   const [count, setCount] = useState(142347);
   const [showMinusSign, setShowMinusSign] = useState(true);
   const [showPlusSign, setShowPlusSign] = useState(false);
-  const [includeComma, setIncludeComma] = useState(false);
+  const [useGrouping, setUseGrouping] = useState(false);
   const [enableCompactNotation, setEnableCompactNotation] = useState(false);
   const [compactToFixed, setCompactToFixed] = useState(1);
   const [toFixed, setToFixed] = useState(2);
   const [fixedOnlyForCompact, setFixedOnlyForCompact] = useState(true);
+  const [locale, setLocale] = useState("en-US");
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ backgroundColor: "", alignItems: "center" }}>
+      <View style={{ alignItems: "center", width: "100%" }}>
         <View style={{ flexDirection: "row" }}>
           <Button
             variant="secondary"
@@ -90,26 +91,18 @@ export default function App() {
           />
         </View>
         <AnimatedRollingNumber
-          containerStyle={{
-            backgroundColor: "rgba(0,0,0,0.2)",
-            borderRadius: 10,
-            padding: 32,
-            marginVertical: 24,
-          }}
-          value={Number(count.toFixed(toFixed))}
-          includeComma={includeComma}
+          containerStyle={styles.numberContainer}
+          value={count}
+          toFixed={toFixed}
+          useGrouping={useGrouping}
+          locale={locale}
           // formattedText={customFormatCompactNumber(count)}
           enableCompactNotation={enableCompactNotation}
           compactToFixed={compactToFixed}
           fixedOnlyForCompact={fixedOnlyForCompact}
           showPlusSign={showPlusSign}
           showMinusSign={showMinusSign}
-          textStyle={{
-            color: "black",
-            fontWeight: "bold",
-            paddingHorizontal: 1,
-            fontSize: 28,
-          }}
+          textStyle={styles.textStyle}
         />
         <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 24 }}>
           Props Enabled / Disabled
@@ -128,9 +121,9 @@ export default function App() {
             style={{ minWidth: 100 }}
           />
           <Button
-            variant={includeComma ? "primary" : "secondary"}
-            title="show ,"
-            onPress={() => setIncludeComma(!includeComma)}
+            variant={useGrouping ? "primary" : "secondary"}
+            title="useGrouping"
+            onPress={() => setUseGrouping(!useGrouping)}
             style={{ minWidth: 100 }}
           />
         </View>
@@ -174,6 +167,18 @@ export default function App() {
           onPress={() => setToFixed(Math.max(toFixed - 1, 0))}
           style={{ minWidth: 100 }}
         />
+        <View style={{ flexDirection: "row" }}>
+          <Button
+            variant={locale === "en-US" ? "primary" : "secondary"}
+            title="locale en-US"
+            onPress={() => setLocale("en-US")}
+          />
+          <Button
+            variant={locale === "de-DE" ? "primary" : "secondary"}
+            title="locale de-DE"
+            onPress={() => setLocale("de-DE")}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -197,6 +202,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "white",
+  },
+  textStyle: {
+    color: "black",
+    fontWeight: "bold",
+    paddingHorizontal: 1,
+    fontSize: 28,
+  },
+  numberContainer: {
+    backgroundColor: "rgba(0,0,0,0.2)",
+    borderRadius: 10,
+    padding: 32,
+    marginVertical: 24,
   },
 });
 ```

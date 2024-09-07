@@ -1,5 +1,11 @@
 import React, { useEffect, useMemo } from "react";
-import { Text, StyleProp, ViewStyle, TextStyle } from "react-native";
+import {
+  Text,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  StyleSheet,
+} from "react-native";
 import Animated, {
   AnimationCallback,
   Easing,
@@ -132,81 +138,82 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
         ? COMPACT_NOTATIONS.indexOf(value.toUpperCase())
         : 0
       : Number(value);
-    animatedValue.value = animateToNewValue(newValue, DIGIT_VARIANTS[value]); //SIGNS.includes(value)
+    animatedValue.value = animateToNewValue(newValue, DIGIT_VARIANTS[value]);
   }, [value]);
 
-  return (
-    <Animated.View
-      layout={LinearTransition}
-      entering={FadeIn}
-      style={[
-        { alignItems: "center", justifyContent: "center" },
-        containerStyle,
-        { overflow: "hidden" },
-      ]}
-      {...rest}
-    >
+  return useMemo(
+    () => (
       <Animated.View
+        layout={LinearTransition}
+        entering={FadeIn}
         style={[
-          {
-            alignItems: "center",
-            overflow: "visible",
-            justifyContent: "center",
-          },
-          animatedStyle,
+          { alignItems: "center", justifyContent: "center" },
+          containerStyle,
+          { overflow: "hidden" },
         ]}
+        {...rest}
       >
-        {isNumeric ? (
-          NUMBER_ARRAY.map((_, index) => (
+        <Animated.View style={[styles.digitContainer, animatedStyle]}>
+          {isNumeric ? (
+            NUMBER_ARRAY.map((_, index) => (
+              <Text
+                key={index}
+                style={[
+                  textStyle,
+                  numberStyle,
+                  {
+                    position: index === 0 ? "relative" : "absolute",
+                    transform: [{ translateY: height * index }],
+                  },
+                ]}
+                {...textProps}
+                {...numberTextProps}
+              >
+                {index}
+              </Text>
+            ))
+          ) : COMPACT_NOTATIONS.includes(value.toUpperCase()) ? (
+            COMPACT_NOTATIONS.map((char, index) => (
+              <Text
+                key={index}
+                style={[
+                  textStyle,
+                  compactNotationStyle,
+                  {
+                    paddingHorizontal: index === 0 ? 1.5 : 0,
+                    position: index === 0 ? "relative" : "absolute",
+                    transform: [{ translateY: height * index }],
+                  },
+                ]}
+                {...textProps}
+                {...compactNotationTextProps}
+              >
+                {char}
+              </Text>
+            ))
+          ) : (
             <Text
-              key={index}
               style={[
                 textStyle,
-                numberStyle,
-                {
-                  position: index === 0 ? "relative" : "absolute",
-                  transform: [{ translateY: height * index }],
-                },
+                othersTextStyle?.[value as keyof typeof othersTextStyle],
               ]}
               {...textProps}
-              {...numberTextProps}
+              {...othersTextProps?.[value as keyof typeof othersTextProps]}
             >
-              {index}
+              {value}
             </Text>
-          ))
-        ) : COMPACT_NOTATIONS.includes(value.toUpperCase()) ? (
-          COMPACT_NOTATIONS.map((char, index) => (
-            <Text
-              key={index}
-              style={[
-                textStyle,
-                compactNotationStyle,
-                {
-                  paddingHorizontal: index === 0 ? 1.5 : 0,
-                  position: index === 0 ? "relative" : "absolute",
-                  transform: [{ translateY: height * index }],
-                },
-              ]}
-              {...textProps}
-              {...compactNotationTextProps}
-            >
-              {char}
-            </Text>
-          ))
-        ) : (
-          <Text
-            style={[
-              textStyle,
-              othersTextStyle?.[value as keyof typeof othersTextStyle],
-              // {backgroundColor: "blue"}
-            ]}
-            {...textProps}
-            {...othersTextProps?.[value as keyof typeof othersTextProps]}
-          >
-            {value}
-          </Text>
-        )}
+          )}
+        </Animated.View>
       </Animated.View>
-    </Animated.View>
+    ),
+    [height, value]
   );
 };
+
+const styles = StyleSheet.create({
+  digitContainer: {
+    alignItems: "center",
+    overflow: "visible",
+    justifyContent: "center",
+  },
+});

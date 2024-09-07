@@ -29,8 +29,10 @@ export interface AnimatedRollingNumberProps
   showMinusSign?: boolean;
   /** Whether to show the plus sign. */
   showPlusSign?: boolean;
+  /** Number of decimal places to show in normal notation. */
+  toFixed?: number;
   /** Whether to include commas in the number formatting (e.g., 1,000). */
-  includeComma?: boolean;
+  useGrouping?: boolean;
   /** Custom formatted text to display instead of the numeric value. */
   formattedText?: string;
   /** The locale to use for number formatting. Defaults to "en-US". */
@@ -89,7 +91,8 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
   value,
   showMinusSign = true,
   showPlusSign = false,
-  includeComma = false,
+  toFixed,
+  useGrouping = false,
   formattedText,
   locale = "en-US",
   enableCompactNotation,
@@ -122,23 +125,27 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
       (enableCompactNotation &&
         formatCompactNumber(
           numberValue,
-          compactToFixed,
+          compactToFixed || toFixed,
           fixedOnlyForCompact,
-          includeComma,
+          useGrouping,
           locale
         )) ||
-      (includeComma
-        ? numberValue.toLocaleString(locale)
-        : numberValue.toString()),
+      numberValue.toLocaleString(locale, {
+        useGrouping,
+        minimumFractionDigits: toFixed,
+        maximumFractionDigits: toFixed,
+      }),
     [
       formattedText,
-      includeComma,
+      useGrouping,
       value,
       compactToFixed,
       enableCompactNotation,
       showMinusSign,
       showPlusSign,
       fixedOnlyForCompact,
+      locale,
+      toFixed,
     ]
   );
   const numberWithSign =
@@ -159,11 +166,10 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
       style={[styles.container, containerStyle]}
       {...rest}
     >
-      <View style={{ flexDirection: "row" }} onLayout={handleLayout}>
+      <View style={styles.innerContainer} onLayout={handleLayout}>
         {numberWithSign.split("").map((char, index) => (
           <AnimatedDigit
             key={formattedNumber.length - index - 1}
-            // key={char}
             value={char}
             height={height}
             containerStyle={digitContainerStyle}
@@ -190,8 +196,12 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  innerContainer: {
+    flexDirection: "row",
     alignItems: "center",
   },
 });
