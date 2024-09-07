@@ -2,7 +2,7 @@
 
 ✨ `react-native-animated-rolling-numbers` is a React Native component that animates numbers and compact notations (K, M, B, T) with customizable styles and animations. It's designed to create smooth, eye-catching transitions between numeric values.
 
-[![React Native Animated rolling numbers Example](https://github.com/user-attachments/assets/544fe849-f6c4-4e18-a6db-4334bf325b70)](https://github.com/user-attachments/assets/544fe849-f6c4-4e18-a6db-4334bf325b70)
+[![React Native Animated rolling numbers Example](https://github.com/user-attachments/assets/48b10447-5978-4a51-9715-229631a939d5)](https://github.com/user-attachments/assets/48b10447-5978-4a51-9715-229631a939d5)
 
 ## Features
 
@@ -41,7 +41,7 @@ const App = () => {
         value={value}
         showPlusSign
         showMinusSign
-        includeComma
+        useGrouping
         enableCompactNotation
         compactToFixed={2}
         textStyle={styles.digits}
@@ -94,9 +94,13 @@ Whether to show the minus sign for negative numbers. Defaults to `true`.
 
 Whether to show the plus sign for positive numbers. Defaults to `false`.
 
-### `includeComma?: boolean`
+### `toFixed?: number`
 
-Whether to include commas in the number formatting (e.g., 1,000). Defaults to `false`.
+Number of decimal places to show in normal notation. defaults to `undefined`.
+
+### `useGrouping?: boolean`
+
+Whether to include commas/points in the number formatting (e.g.,1000987 -> 1,000,987). Defaults to `false`.
 
 ### `formattedText?: string`
 
