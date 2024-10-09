@@ -1,4 +1,4 @@
-# React Native Animated Digits
+# React Native Animated Rolling numbers
 
 ✨ `react-native-animated-rolling-numbers` is a React Native component that animates numbers and compact notations (K, M, B, T) with customizable styles and animations. It's designed to create smooth, eye-catching transitions between numeric values.
 
