@@ -1,6 +1,8 @@
 ```javascript
 import {
+  Dimensions,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -63,7 +65,10 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ alignItems: "center", width: "100%" }}>
+      <ScrollView
+        style={{ width: Dimensions.get("screen").width }}
+        contentContainerStyle={styles.contentContainer}
+      >
         <View style={{ flexDirection: "row" }}>
           <Button
             variant="secondary"
@@ -179,7 +184,7 @@ export default function App() {
             onPress={() => setLocale("de-DE")}
           />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -189,6 +194,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  contentContainer: {
+    flexGrow: 1,
+    alignItems: "center",
+    width: Dimensions.get("screen").width,
   },
   button: {
     backgroundColor: "#2077E0",

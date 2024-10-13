@@ -7,6 +7,7 @@ import {
   TextStyle,
   View,
   Text,
+  I18nManager,
 } from "react-native";
 import Animated, {
   AnimationCallback,
@@ -148,8 +149,16 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
       toFixed,
     ]
   );
-  const numberWithSign =
-    (showPlusSign && value >= 0 ? "+" : "") + formattedNumber;
+
+  const number = useMemo(() => {
+    const numberWithSign = (
+      (showPlusSign && value >= 0 ? "+" : "") + formattedNumber
+    ).split("");
+    if (I18nManager.isRTL) {
+      return numberWithSign.reverse();
+    }
+    return numberWithSign;
+  }, [formattedNumber, value, showPlusSign]);
 
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -167,7 +176,7 @@ export const AnimatedRollingNumber: React.FC<AnimatedRollingNumberProps> = ({
       {...rest}
     >
       <View style={styles.innerContainer} onLayout={handleLayout}>
-        {numberWithSign.split("").map((char, index) => (
+        {number.map((char, index) => (
           <AnimatedDigit
             key={formattedNumber.length - index - 1}
             value={char}

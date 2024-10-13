@@ -4,6 +4,8 @@
 
 [![React Native Animated rolling numbers Example](https://github.com/user-attachments/assets/48b10447-5978-4a51-9715-229631a939d5)](https://github.com/user-attachments/assets/48b10447-5978-4a51-9715-229631a939d5)
 
+The example shown in the video is available [here](example/example.md).
+
 ## Features
 
 - ✨ Supports animated transitions for numeric values and symbols (e.g., commas, dots).
@@ -75,6 +77,8 @@ const styles = StyleSheet.create({
 
 export default App;
 ```
+
+The example shown in the video is available [here](example/example.md).
 
 ## Props
 
