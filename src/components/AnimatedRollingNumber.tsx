@@ -1,22 +1,22 @@
 import React, { useCallback, useMemo, useState } from "react";
 import {
   StyleSheet,
-  LayoutChangeEvent,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
+  type LayoutChangeEvent,
+  type StyleProp,
+  type ViewStyle,
+  type TextStyle,
   View,
   Text,
   I18nManager,
 } from "react-native";
 import Animated, {
-  AnimationCallback,
-  EasingFunction,
-  EasingFunctionFactory,
+  type AnimationCallback,
+  type EasingFunction,
+  type EasingFunctionFactory,
   LinearTransition,
   ReduceMotion,
 } from "react-native-reanimated";
-import { AnimatedDigit, DigitVariant } from "./AnimatedDigit";
+import { AnimatedDigit, type DigitVariant } from "./AnimatedDigit";
 import { formatCompactNumber } from "../utils";
 
 /**

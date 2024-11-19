@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo } from "react";
 import {
-  Text,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
+  type StyleProp,
   StyleSheet,
+  Text,
+  type TextStyle,
+  type ViewStyle,
 } from "react-native";
 import Animated, {
-  AnimationCallback,
+  type AnimationCallback,
   Easing,
-  EasingFunction,
-  EasingFunctionFactory,
+  type EasingFunction,
+  type EasingFunctionFactory,
   FadeIn,
   LinearTransition,
   ReduceMotion,
