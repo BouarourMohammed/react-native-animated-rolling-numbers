@@ -132,6 +132,14 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
     [signTextProps, dotTextProps, commaTextProps]
   );
 
+  const resolvedPadding = useMemo(
+    () =>
+      (StyleSheet.flatten(compactNotationStyle)?.fontSize ||
+        StyleSheet.flatten(textStyle)?.fontSize ||
+        14) * 0.1,
+    [textStyle, compactNotationStyle]
+  );
+
   useEffect(() => {
     const newValue = !isNumeric
       ? COMPACT_NOTATIONS.includes(value.toUpperCase())
@@ -180,7 +188,7 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
                   textStyle,
                   compactNotationStyle,
                   {
-                    paddingHorizontal: index === 0 ? 1.5 : 0,
+                    paddingHorizontal: index === 0 ? resolvedPadding : 0,
                     position: index === 0 ? "relative" : "absolute",
                     transform: [{ translateY: height * index }],
                   },
@@ -206,7 +214,21 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
         </Animated.View>
       </Animated.View>
     ),
-    [height, value]
+    __DEV__
+      ? [
+          value,
+          height,
+          containerStyle,
+          textProps,
+          numberTextProps,
+          compactNotationTextProps,
+          othersTextProps,
+          textStyle,
+          numberStyle,
+          compactNotationStyle,
+          othersTextStyle,
+        ]
+      : [height, value]
   );
 };
 

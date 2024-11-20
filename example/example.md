@@ -108,6 +108,10 @@ export default function App() {
           showPlusSign={showPlusSign}
           showMinusSign={showMinusSign}
           textStyle={styles.textStyle}
+          // (optional)  using the font-variant to avoid layout jumping when the number is updated
+          numberStyle={{
+            fontVariant: ["tabular-nums"],
+          }}
         />
         <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 24 }}>
           Props Enabled / Disabled
