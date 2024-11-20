@@ -9,7 +9,8 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "outDir": "./lib",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "sourceMap": true
   },
   "exclude": ["node_modules", "lib"]
 }
