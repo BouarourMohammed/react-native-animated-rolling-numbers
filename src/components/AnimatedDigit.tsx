@@ -171,7 +171,7 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
                   numberStyle,
                   {
                     position: index === 0 ? "relative" : "absolute",
-                    transform: [{ translateY: height * index }],
+                    top: height * index,
                   },
                 ]}
                 {...textProps}
@@ -190,7 +190,7 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
                   {
                     paddingHorizontal: index === 0 ? resolvedPadding : 0,
                     position: index === 0 ? "relative" : "absolute",
-                    transform: [{ translateY: height * index }],
+                    top: height * index,
                   },
                 ]}
                 {...textProps}
