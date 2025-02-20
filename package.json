@@ -1,6 +1,6 @@
 {
   "name": "react-native-animated-rolling-numbers",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc"
@@ -26,9 +26,6 @@
   "author": "Bouarour Mohammed",
   "license": "MIT",
   "description": "🚀 The Animated Digits component for React Native seamlessly blends a sophisticated number rotation effect with dynamic value updates, creating an engaging and interactive experience that enhances your user interfaces with a touch of elegance and excitement.",
-  "dependencies": {
-    "react-native-reanimated": "^3.15.1"
-  },
   "devDependencies": {
     "@types/react": "^18.3.5",
     "@types/react-native": "^0.73.0",
