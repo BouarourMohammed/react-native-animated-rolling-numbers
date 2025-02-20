@@ -23,6 +23,9 @@ npm install react-native-animated-rolling-numbers
 yarn add react-native-animated-rolling-numbers
 ```
 
+> [!IMPORTANT]
+> This library relies on react-native-reanimated. You must install react-native-reanimated separately in your project. This is a peer dependency.
+
 Make sure you have `react-native-reanimated` installed in your project. Follow the official installation guide here: [react-native-reanimated installation](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/#installation).
 
 ## Usage
