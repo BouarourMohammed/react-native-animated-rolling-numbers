@@ -35,17 +35,17 @@ export interface AnimatedDigitProps
   /** Style for the container wrapping the animated text. */
   containerStyle?: StyleProp<ViewStyle>;
   /** Props for the primary text component used in the component. */
-  textProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  textProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Props for the number text components. */
-  numberTextProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  numberTextProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Props for the comma text component, if used. */
-  commaTextProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  commaTextProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Props for the dot (decimal point) text component, if used. */
-  dotTextProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  dotTextProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Props for the compact notation text components (K, M, B, T). */
-  compactNotationTextProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  compactNotationTextProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Props for the sign text component, if used. */
-  signTextProps?: Omit<React.ComponentProps<typeof Text>, "style">;
+  signTextProps?: Omit<React.ComponentProps<typeof Text>, "style"> | undefined;
   /** Style for the primary text component. */
   textStyle?: StyleProp<TextStyle>;
   /** Style for the number text components. */
@@ -63,11 +63,11 @@ export interface AnimatedDigitProps
     duration?: number;
     reduceMotion?: ReduceMotion;
     easing?: EasingFunction | EasingFunctionFactory;
-  };
+  } | undefined;
   /** Callback function invoked when the animation completes. */
-  animationCallback?: AnimationCallback;
+  animationCallback?: AnimationCallback | undefined;
   /** Custom function to animate the value change. Defaults to a bounce animation. */
-  animateToNewValue?: (newValue: number, variant?: DigitVariant) => number;
+  animateToNewValue?: ((newValue: number, variant?: DigitVariant) => number) | undefined;
 }
 
 /**
