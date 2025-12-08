@@ -103,7 +103,7 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
   numberTextProps,
   ...rest
 }) => {
-  const isNumeric = !isNaN(Number(value));
+  const isNumeric = value.trim() !== '' && !isNaN(Number(value));
   const animatedValue = useSharedValue(isNumeric ? Number(value) : 0);
   const animatedStyle = useAnimatedStyle(
     () => ({
