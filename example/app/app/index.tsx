@@ -1,7 +1,5 @@
-```javascript
 import {
   Dimensions,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { useState } from "react";
-import { AnimatedRollingNumber } from "react-native-animated-rolling-numbers";
+import AnimatedRollingNumber from "react-native-animated-rolling-numbers";
 
 interface ButtonProps extends TouchableOpacityProps {
   variant?: "primary" | "secondary";
@@ -64,7 +62,7 @@ export default function App() {
   const [locale, setLocale] = useState("en-US");
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView
         style={{ width: Dimensions.get("screen").width }}
         contentContainerStyle={styles.contentContainer}
@@ -189,7 +187,7 @@ export default function App() {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -230,4 +228,3 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
 });
-```

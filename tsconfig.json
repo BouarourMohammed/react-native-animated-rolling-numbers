@@ -1,16 +1,10 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "es2015"],
-    "allowJs": true,
-    "jsx": "react",
     "declaration": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
     "outDir": "./lib",
-    "rootDir": "./src",
-    "sourceMap": true
+    "rootDir": "./src"
   },
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib", "example"]
 }
