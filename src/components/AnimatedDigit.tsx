@@ -108,8 +108,7 @@ export const AnimatedDigit: React.FC<AnimatedDigitProps> = ({
   const animatedStyle = useAnimatedStyle(
     () => ({
       transform: [{ translateY: animatedValue.value * (height || 0) }],
-    }),
-    [height]
+    })
   );
 
   const othersTextStyle = useMemo(
